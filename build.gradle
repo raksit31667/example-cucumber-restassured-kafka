@@ -28,7 +28,9 @@ task cucumber() {
         javaexec {
             main = "io.cucumber.core.cli.Main"
             classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
-            args = ['--plugin', 'pretty', '--glue', 'stepdefs', 'src/test/resources']
+            args = ['--plugin', 'pretty', '--glue', 'com/raksit/example', 'src/test/resources']
+
+            systemProperty "token", System.getProperty("token")
         }
     }
 }
