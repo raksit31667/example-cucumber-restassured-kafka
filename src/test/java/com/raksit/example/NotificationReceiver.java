@@ -16,8 +16,6 @@ import java.util.Properties;
 
 public class NotificationReceiver {
 
-  private static final int MAX_ALLOWED_LATENCY = 5000;
-
   private final String topic;
 
   public NotificationReceiver(String topic) {
@@ -33,10 +31,11 @@ public class NotificationReceiver {
     kafkaConsumer.subscribe(Collections.singletonList(topic));
 
     try {
-      long endPollingTimestamp = System.currentTimeMillis() + MAX_ALLOWED_LATENCY;
+      long maxAllowedLatency = seconds * 1000;
+      long endPollingTimestamp = System.currentTimeMillis() + maxAllowedLatency;
 
       while ( System.currentTimeMillis() < endPollingTimestamp ) {
-        ConsumerRecords<String, String> consumerRecords = kafkaConsumer.poll(Duration.of(seconds, ChronoUnit.SECONDS));
+        ConsumerRecords<String, String> consumerRecords = kafkaConsumer.poll(Duration.of(1, ChronoUnit.SECONDS));
         for ( ConsumerRecord<String, String> next : consumerRecords ) {
           System.out.println(next.value());
           records.add(next.value());
