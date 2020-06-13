@@ -47,9 +47,9 @@ public class CreateAnOrderStepDefinitions {
     createdOrderId = response.jsonPath().get("id");
   }
 
-  @When("wait for notification from the system within 5 seconds")
-  public void waitForSystemNotification() throws IOException {
-    records = new NotificationReceiver("order.created").poll();
+  @When("wait for notification from the system within {int} seconds")
+  public void waitForSystemNotification(int waitingSeconds) throws IOException {
+    records = new NotificationReceiver("order.created").poll(waitingSeconds);
   }
 
   @Then("a user should receive a notification with a correct id")

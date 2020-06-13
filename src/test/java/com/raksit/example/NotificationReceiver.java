@@ -24,7 +24,7 @@ public class NotificationReceiver {
     this.topic = topic;
   }
 
-  public List<String> poll() throws IOException {
+  public List<String> poll(int seconds) throws IOException {
 
     List<String> records = new ArrayList<>();
 
@@ -36,7 +36,7 @@ public class NotificationReceiver {
       long endPollingTimestamp = System.currentTimeMillis() + MAX_ALLOWED_LATENCY;
 
       while ( System.currentTimeMillis() < endPollingTimestamp ) {
-        ConsumerRecords<String, String> consumerRecords = kafkaConsumer.poll(Duration.of(1, ChronoUnit.SECONDS));
+        ConsumerRecords<String, String> consumerRecords = kafkaConsumer.poll(Duration.of(seconds, ChronoUnit.SECONDS));
         for ( ConsumerRecord<String, String> next : consumerRecords ) {
           System.out.println(next.value());
           records.add(next.value());
