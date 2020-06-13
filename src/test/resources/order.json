@@ -1,0 +1,11 @@
+{
+  "soldTo": "E2E",
+  "shipTo": "E2E",
+  "items": [
+    {
+      "name": "Diesel",
+      "price": 2000,
+      "currency": "THB"
+    }
+  ]
+}
