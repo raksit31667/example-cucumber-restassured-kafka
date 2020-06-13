@@ -22,7 +22,7 @@ public class NotificationReceiver {
     this.topic = topic;
   }
 
-  public List<String> poll(int seconds) throws IOException {
+  public List<String> poll(long seconds) throws IOException {
 
     List<String> records = new ArrayList<>();
 
