@@ -10,7 +10,6 @@ import org.apache.http.HttpStatus;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
@@ -31,14 +30,14 @@ public class CreateAnOrderStepDefinitions {
   }
 
   @When("send a request to create an order successfully")
-  public void createAndOrder() throws IOException {
+  public void createAndOrder() {
     Response response = given()
         .contentType(ContentType.JSON)
         .body(orderRequestBody)
         .when()
         .header("Authorization",
             "Bearer " + System.getProperty("token"))
-        .post(new URL("http", "localhost", 8080, "/orders"))
+        .post(System.getProperty("orderHostName") + "/orders")
         .then()
         .statusCode(HttpStatus.SC_CREATED)
         .extract()

@@ -52,6 +52,7 @@ public class NotificationReceiver {
     FileReader reader = new FileReader(FileUtils.getFile("src", "test", "resources", "kafka.properties"));
     Properties properties = new Properties();
     properties.load(reader);
+    properties.setProperty("bootstrap.servers", System.getProperty("kafkaBootstrapServers"));
 
     return properties;
   }

@@ -30,6 +30,8 @@ task cucumber() {
             classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
             args = ['--plugin', 'pretty', '--glue', 'com/raksit/example', 'src/test/resources']
 
+            systemProperty "orderHostName", System.getProperty("orderHostName")
+            systemProperty "kafkaBootstrapServers", System.getProperty("kafkaBootstrapServers")
             systemProperty "token", System.getProperty("token")
         }
     }
