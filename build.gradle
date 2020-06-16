@@ -20,6 +20,7 @@ dependencies {
     testImplementation 'io.rest-assured:rest-assured:3.3.0'
     testImplementation 'org.apache.kafka:kafka-clients:2.5.0'
     testImplementation 'commons-io:commons-io:2.7'
+    testImplementation 'io.cucumber:cucumber-junit:6.1.1'
 }
 
 task cucumber() {
@@ -28,7 +29,7 @@ task cucumber() {
         javaexec {
             main = "io.cucumber.core.cli.Main"
             classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
-            args = ['--plugin', 'pretty', '--glue', 'com/raksit/example', 'src/test/resources']
+            args = ['--plugin', 'junit:build/reports/cucumber-results.xml', '--glue', 'com/raksit/example', 'src/test/resources']
 
             systemProperty "order.service.url", System.getProperty("order.service.url")
             systemProperty "service.client.id", System.getProperty("service.client.id")

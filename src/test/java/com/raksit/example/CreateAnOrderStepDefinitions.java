@@ -3,12 +3,14 @@ package com.raksit.example;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.cucumber.junit.Cucumber;
 import io.restassured.config.EncoderConfig;
 import io.restassured.config.RestAssuredConfig;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.apache.commons.io.FileUtils;
 import org.apache.http.HttpStatus;
+import org.junit.runner.RunWith;
 
 import java.io.File;
 import java.io.IOException;
@@ -19,6 +21,7 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
+@RunWith(Cucumber.class)
 public class CreateAnOrderStepDefinitions {
 
   private String accessToken;
