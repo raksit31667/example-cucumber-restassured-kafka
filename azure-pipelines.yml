@@ -1,0 +1,26 @@
+trigger:
+  - master
+
+stages:
+  - stage: E2E
+    jobs:
+      - job:
+        steps:
+          - task: Gradle@2
+            displayName: 'Run Cucumber'
+            inputs:
+              workingDirectory: ''
+              gradleWrapperFile: 'gradlew'
+              gradleOptions: '-Xmx3072m'
+              javaHomeOption: 'JDKVersion'
+              jdkVersionOption: '1.8'
+              jdkArchitectureOption: 'x64'
+              publishJUnitResults: true
+              testResultsFiles: 'build/reports/cucumber-results.xml'
+              tasks: |
+                cucumber -Dorder.service.url=$(order.service.url)
+                -Dservice.client.id=$(service.client.id)
+                -Dservice.client.secret=$(service.client.secret)
+                -Dservice.resource=$(service.resource)
+                -Dservice.tenant.id=$(service.tenant.id)
+                -Dkafka.bootstrap.servers=$(kafka.bootstrap.servers)
