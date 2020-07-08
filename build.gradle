@@ -20,7 +20,7 @@ dependencies {
     testImplementation 'io.rest-assured:rest-assured:3.3.0'
     testImplementation 'org.apache.kafka:kafka-clients:2.5.0'
     testImplementation 'commons-io:commons-io:2.7'
-    testImplementation 'io.cucumber:cucumber-junit:6.1.2'
+    testImplementation 'io.cucumber:cucumber-junit:6.2.1'
 }
 
 task cucumber() {
